@@ -1,0 +1,13 @@
+{
+  "name": "jarvis",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "J.A.R.V.I.S. - a local AI assistant with a HUD interface, powered by Claude",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.128.0"
+  }
+}
