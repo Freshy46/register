@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>J.A.R.V.I.S.</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+
+    <main class="shell">
+      <section class="hud-wrap" aria-label="JARVIS core">
+        <svg class="hud" id="hud" viewBox="0 0 400 400" role="img" aria-label="J.A.R.V.I.S. interface">
+          <defs>
+            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="2.5" result="b" />
+              <feMerge><feMergeNode in="b" /><feMergeNode in="SourceGraphic" /></feMerge>
+            </filter>
+            <radialGradient id="core" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stop-color="#0b3b5c" stop-opacity="0.9" />
+              <stop offset="100%" stop-color="#020b16" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <circle cx="200" cy="200" r="190" fill="url(#core)" />
+
+          <g filter="url(#glow)" fill="none" stroke-linecap="round">
+            <!-- outer thin ring with gaps -->
+            <g class="spin slow">
+              <circle cx="200" cy="200" r="188" stroke="var(--c-dim)" stroke-width="1.2" stroke-dasharray="300 40 120 30 200 50" />
+            </g>
+            <!-- outer thick arcs -->
+            <g class="spin rev med">
+              <circle cx="200" cy="200" r="176" stroke="var(--c-main)" stroke-width="5" stroke-dasharray="90 260 40 120 160 440" />
+            </g>
+            <!-- tick ring -->
+            <g class="spin slow">
+              <circle cx="200" cy="200" r="162" stroke="var(--c-soft)" stroke-width="7" stroke-dasharray="2 6" opacity="0.7" />
+            </g>
+            <!-- segmented block ring -->
+            <g class="spin rev slow">
+              <circle cx="200" cy="200" r="146" stroke="var(--c-main)" stroke-width="10" stroke-dasharray="6 5" opacity="0.55" />
+            </g>
+            <!-- mid thin arcs -->
+            <g class="spin fast">
+              <circle cx="200" cy="200" r="130" stroke="var(--c-bright)" stroke-width="2" stroke-dasharray="180 60 90 90 140 257" />
+            </g>
+            <!-- inner dotted ring -->
+            <g class="spin rev med">
+              <circle cx="200" cy="200" r="116" stroke="var(--c-soft)" stroke-width="3" stroke-dasharray="1 7" />
+            </g>
+            <!-- inner glowing core rings -->
+            <circle class="pulse" cx="200" cy="200" r="98" stroke="var(--c-bright)" stroke-width="6" />
+            <circle cx="200" cy="200" r="88" stroke="var(--c-main)" stroke-width="1.5" opacity="0.8" />
+            <g class="spin fast">
+              <circle cx="200" cy="200" r="80" stroke="var(--c-soft)" stroke-width="2" stroke-dasharray="30 20" opacity="0.6" />
+            </g>
+          </g>
+
+          <text x="200" y="207" text-anchor="middle" class="hud-label">J.A.R.V.I.S</text>
+          <text x="200" y="232" text-anchor="middle" class="hud-status" id="hud-status">ONLINE</text>
+        </svg>
+      </section>
+
+      <section class="console" aria-label="Conversation">
+        <header class="console-head">
+          <span class="dot" id="status-dot"></span>
+          <span class="title">Just A Rather Very Intelligent System</span>
+          <div class="controls">
+            <button id="voice-toggle" class="icon-btn" type="button" aria-pressed="false" title="Read replies aloud">🔈 Voice</button>
+            <button id="clear" class="icon-btn" type="button" title="Clear conversation">Reset</button>
+          </div>
+        </header>
+
+        <div class="log" id="log" aria-live="polite"></div>
+
+        <form class="input-row" id="form" autocomplete="off">
+          <button id="mic" class="mic" type="button" title="Speak (Chrome/Edge)" aria-label="Speak">🎙</button>
+          <textarea id="input" rows="1" placeholder="How may I assist you, Sir?" aria-label="Message"></textarea>
+          <button id="send" class="send" type="submit">Send</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
